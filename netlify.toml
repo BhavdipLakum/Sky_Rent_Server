@@ -1,0 +1,8 @@
+[build]
+  command = "dotnet publish -c Release"
+  publish = "bin/Release/net8.0/publish"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
