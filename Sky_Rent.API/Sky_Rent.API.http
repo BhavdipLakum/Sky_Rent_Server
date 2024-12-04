@@ -1,0 +1,6 @@
+@Sky_Rent.API_HostAddress = http://localhost:5161
+
+GET {{Sky_Rent.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
