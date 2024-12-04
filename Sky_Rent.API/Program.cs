@@ -2,6 +2,9 @@ using Sky_Rent.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Sky_Rent.Domain.Interfaces;
+using Sky_Rent.Infrastructure.Repositories;
+using Sky_Rent.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+builder.Services.AddScoped<AuthenticationService>();  // <-- Add this line
+builder.Services.AddScoped<IUserRepository, UserRepository>(); // Register UserRepository if not already done
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
