@@ -21,13 +21,12 @@ namespace Sky_Rent.Infrastructure.Repositories
 
         public async Task<User> GetByEmailOrMobileAsync(string emailOrMobile)
         {
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == emailOrMobile || u.MobileNo == emailOrMobile);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == emailOrMobile || u.MobileNo == emailOrMobile);
         }
 
         public async Task<User> RegisterAsync(User user, string password)
         {
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password); // Hash password
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
